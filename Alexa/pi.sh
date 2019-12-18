@@ -41,13 +41,35 @@ run_os_specifics() {
   }
 
 build_kwd_engine() {
-  #get sensory and build
-  echo
-  echo "==============> CLONING AND BUILDING SENSORY =============="
-  echo
 
-  cd $THIRD_PARTY_PATH
-  git clone git://github.com/Sensory/alexa-rpi.git
+  LOCAL_DIR="${THIRD_PARTY_PATH}/alexa-rpi"
+  if [ -d "${LOCAL_DIR}" ]; then
+  {
+    #checkout sensory and build
+    echo
+    echo "==============> Checkout sensory and build =============="
+    echo
+
+    cd ./${LOCAL_DIR}
+    git checkout -- .
+  }
+  else
+  {
+    cd $THIRD_PARTY_PATH
+
+    #get sensory and build
+    echo
+    echo "==============> CLONING AND BUILDING SENSORY =============="
+    echo
+
+     {
+        git clone git://github.com/Sensory/alexa-rpi.git
+     } || {
+        git clone https://github.com/Sensory/alexa-rpi.git
+     }
+  }
+  fi
+
   bash ./alexa-rpi/bin/license.sh
 }
 

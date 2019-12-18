@@ -210,16 +210,32 @@ then
   chmod +x $START_SH
   
   run_os_specifics
-
-  if [ ! -d "${SOURCE_PATH}/avs-device-sdk" ]
-  then
+  
+  LOCAL_DIR="${SOURCE_PATH}/avs-device-sdk"
+  if [ -d "${LOCAL_DIR}" ]; then
+  {
+    #checkout SDK
+    echo
+    echo "==============> Checkout SDK =============="
+    echo
+    
+    cd ./${LOCAL_DIR}
+    git checkout -- .
+  }
+  else
+  {
+    cd ${SOURCE_PATH}
+    
     #get sdk
     echo
     echo "==============> CLONING SDK =============="
     echo
-
-    cd $SOURCE_PATH
-    git clone --single-branch git://github.com/shivasiddharth/avs-device-sdk.git
+     {
+        git clone --single-branch git://github.com/shivasiddharth/avs-device-sdk.git
+     } || {
+        git clone --single-branch https://github.com/shivasiddharth/avs-device-sdk.git
+     }
+  }
   fi
 
   # make the SDK
