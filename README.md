@@ -28,7 +28,7 @@ https://github.com/alexa/avs-device-sdk/wiki/Create-Security-Profile
 ***************************************************************
 1. Clone the git using:
 ```
-git clone https://github.com/shivasiddharth/Assistants-Pi  
+git clone https://github.com/ashishdas09/Assistants-Pi  
 ```
 2. Make the installers executable using:
 ```
