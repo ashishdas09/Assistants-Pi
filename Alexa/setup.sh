@@ -212,17 +212,7 @@ then
   run_os_specifics
   
   LOCAL_DIR="${SOURCE_PATH}/avs-device-sdk"
-  if [ -d "${LOCAL_DIR}" ]; then
-  {
-    #checkout SDK
-    echo
-    echo "==============> Checkout SDK =============="
-    echo
-    
-    cd ./${LOCAL_DIR}
-    git checkout -- .
-  }
-  else
+  if [ ! -d "${LOCAL_DIR}" ]; then
   {
     cd ${SOURCE_PATH}
     
@@ -245,6 +235,7 @@ then
   
   mkdir -p $BUILD_PATH
   cd $BUILD_PATH
+  echo "CMAKE_PLATFORM_SPECIFIC :[${CMAKE_PLATFORM_SPECIFIC[@]}]"
   cmake "$SOURCE_PATH/avs-device-sdk" \
       -DCMAKE_BUILD_TYPE=DEBUG \
       "${CMAKE_PLATFORM_SPECIFIC[@]}"
@@ -262,6 +253,7 @@ echo "==============> SAVING CONFIGURATION FILE =============="
 echo
 
 # Set variables for configuration file
+sudo mkdir $CONFIG_DB_PATH
 
 # Variables for cblAuthDelegate
 SDK_CBL_AUTH_DELEGATE_DATABASE_FILE_PATH=$CONFIG_DB_PATH/cblAuthDelegate.db

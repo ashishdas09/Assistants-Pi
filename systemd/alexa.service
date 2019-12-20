@@ -4,7 +4,7 @@ After=network.target network-online.target
 
 [Service]
 Type=forking
-ExecStart=/home/__USER__/Assistants-Pi/Alexa/start.sh
+ExecStart=sudo "/home/$USER/Assistants-Pi/Alexa/start.sh"
 
 
 [Install]

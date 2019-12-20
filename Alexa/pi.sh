@@ -14,8 +14,8 @@
 #
 
 if [ -z "$PLATFORM" ]; then
-	echo "You should run the setup.sh script."
-	exit 1
+    echo "You should run the setup.sh script."
+    exit 1
 fi
 
 SOUND_CONFIG="$HOME/.asoundrc"
